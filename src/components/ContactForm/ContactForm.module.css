@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  width: 200px;
+  margin-right: auto;
+  align-items: flex-start;
+  & button {
+    padding: 5px 10px;
+    font-size: 14px;
+    width: 100px;
+    border: 2px solid #111;
+    align-self: center;
+    border-radius: 8px;
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  & span {
+    font-weight: bold;
+  }
+}
+
+.imput {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}

@@ -1,5 +1,58 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import s from "./ContactForm.module.css";
+
 const ContactForm = () => {
-  return <div></div>;
+  const handleSubmit = (values, options) => {
+    options.resetForm();
+  };
+
+  const orderSchema = Yup.object().shape({
+    phonename: Yup.string()
+      .min(3, "To short!")
+      .max(50, "Too long")
+      .required("Required"),
+    phonenumber: Yup.number()
+      .min(3, "To short!")
+      .max(50, "Too long")
+      .required("Required"),
+  });
+
+  const initialValues = {
+    phonename: "",
+    phonenumber: "",
+  };
+  return (
+    <div className={s.wraper}>
+      <Formik
+        validationSchema={orderSchema}
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+      >
+        <Form className={s.form}>
+          <label className={s.label} htmlFor="">
+            <span>Name</span>
+            <Field className={s.imput} name="phonename" />
+            <ErrorMessage
+              name="phonename"
+              component="span"
+              className={s.error}
+            />
+          </label>
+          <label className={s.label} htmlFor="">
+            <span>Number</span>
+            <Field className={s.imput} name="phonenumber" />
+            <ErrorMessage
+              name="phonenumber"
+              component="span"
+              className={s.error}
+            />
+          </label>
+          <button type="submit">Add contact</button>
+        </Form>
+      </Formik>
+    </div>
+  );
 };
 
 export default ContactForm;
