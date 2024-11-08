@@ -1,0 +1,40 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-right: auto;
+  padding: 0;
+  list-style-type: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  width: 220px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.text_name {
+  font-weight: bold;
+}
+
+.text_number {
+  font-weight: bold;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.btn {
+  position: absolute;
+  left: 180px;
+  bottom: 50px;
+  border-radius: 8px;
+}

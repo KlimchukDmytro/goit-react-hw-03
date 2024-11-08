@@ -2,18 +2,19 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 
-const ContactForm = () => {
+const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, options) => {
+    onSubmit(values);
     options.resetForm();
   };
 
   const orderSchema = Yup.object().shape({
     phonename: Yup.string()
-      .min(3, "To short!")
+      .min(3, "Too short!")
       .max(50, "Too long")
       .required("Required"),
-    phonenumber: Yup.number()
-      .min(3, "To short!")
+    phonenumber: Yup.string()
+      .min(3, "Too short!")
       .max(50, "Too long")
       .required("Required"),
   });
@@ -22,6 +23,7 @@ const ContactForm = () => {
     phonename: "",
     phonenumber: "",
   };
+
   return (
     <div className={s.wraper}>
       <Formik
@@ -30,7 +32,7 @@ const ContactForm = () => {
         initialValues={initialValues}
       >
         <Form className={s.form}>
-          <label className={s.label} htmlFor="">
+          <label className={s.label}>
             <span>Name</span>
             <Field className={s.imput} name="phonename" />
             <ErrorMessage
@@ -39,7 +41,7 @@ const ContactForm = () => {
               className={s.error}
             />
           </label>
-          <label className={s.label} htmlFor="">
+          <label className={s.label}>
             <span>Number</span>
             <Field className={s.imput} name="phonenumber" />
             <ErrorMessage
