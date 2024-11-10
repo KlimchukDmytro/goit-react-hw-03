@@ -1,5 +1,6 @@
 import { FaUser, FaPhone } from "react-icons/fa";
 import s from "./Contact.module.css";
+
 const Contact = ({ id, name, number, onDeleteContact }) => (
   <li className={s.item}>
     <p className={s.text_name}>
@@ -7,7 +8,6 @@ const Contact = ({ id, name, number, onDeleteContact }) => (
       {name}:
     </p>
     <p className={s.text_number}>
-      {" "}
       <FaPhone className={s.icon} />
       {number}
     </p>

@@ -1,0 +1,24 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  width: 220px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.text_name {
+  font-weight: bold;
+}
+
+.text_number {
+  font-weight: bold;
+}
+
+.icon {
+  margin-right: 5px;
+}

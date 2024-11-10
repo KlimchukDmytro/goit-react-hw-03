@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ContactForm from "./ContactForm/ContactForm";
 import SearchBox from "./SearchBox/SearchBox";
 import ContactList from "./ContactList/ContactList";
@@ -13,7 +13,6 @@ const App = () => {
   ]);
   const [filter, setFilter] = useState("");
 
-  // Завантаження контактів з локального сховища
   useEffect(() => {
     const savedContacts = JSON.parse(localStorage.getItem("contacts"));
     if (savedContacts) {
@@ -21,12 +20,20 @@ const App = () => {
     }
   }, []);
 
-  // Збереження контактів до локального сховища
   useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
   const addContact = ({ phonename, phonenumber }) => {
+    if (
+      contacts.some(
+        (contact) =>
+          contact.name === phonename || contact.number === phonenumber
+      )
+    ) {
+      alert("Contact with this name or number already exists.");
+      return;
+    }
     const newContact = {
       id: `id-${Date.now()}`,
       name: phonename,
@@ -41,8 +48,12 @@ const App = () => {
     );
   };
 
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+  const filteredContacts = useMemo(
+    () =>
+      contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      ),
+    [contacts, filter]
   );
 
   return (
